@@ -48,7 +48,7 @@ public class Lift {
         }
     }
 
-    public void start() {
+    public void start() throws InterruptedException {
 
         goalFloor = 0;
         Floor floorWithPassengers = chooseFloorWithPassengers(floors);
@@ -72,7 +72,7 @@ public class Lift {
 
     }
 
-    private void moveLiftUp() {
+    private void moveLiftUp() throws InterruptedException {
 
         int i = currentFloor;
         while (i < House.NUMBER_FLOORS) {
@@ -82,7 +82,7 @@ public class Lift {
 
     }
 
-    private void moveLiftDown() {
+    private void moveLiftDown() throws InterruptedException {
 
         int i = currentFloor - 2;
         while (i >= 0) {
@@ -92,8 +92,9 @@ public class Lift {
 
     }
 
-    private void moveLiftToFloor(Floor floor, boolean moveUp) {
+    private void moveLiftToFloor(Floor floor, boolean moveUp) throws InterruptedException {
 
+        Thread.sleep(1000);
         currentFloor = floor.getNumber();
 
         String massage = "floor - " + currentFloor + ",  start - " + passengers.size();

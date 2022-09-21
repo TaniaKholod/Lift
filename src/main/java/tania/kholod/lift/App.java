@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class App
 {
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws InterruptedException {
         Random r = new Random();
         int low = 5;
         int high = 20;
