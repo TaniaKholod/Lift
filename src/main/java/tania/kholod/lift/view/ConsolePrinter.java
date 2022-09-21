@@ -20,10 +20,10 @@ public class ConsolePrinter {
                     .map(String::valueOf)
                     .collect(Collectors.joining(" "));
             if (i == elevator.getCurrentFloor()) {
-                String direction = elevator.getDirection() ? "\u2191" : "\u2193";
+                String direction = elevator.getDirection() ? "UP  " : "DOWN";
                 System.out.printf("%s Elevator: %s      Floor %d: %s%n", direction, passengersOnElevator, i, passengersOnFloor);
             } else {
-                System.out.printf("                                Floor %d: %s%n", i, passengersOnFloor);
+                System.out.printf("                                   Floor %d: %s%n", i, passengersOnFloor);
             }
         }
         System.out.println("###################################################################");

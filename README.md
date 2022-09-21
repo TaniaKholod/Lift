@@ -13,7 +13,7 @@ To implement project that describes elevator work (see detailed description belo
 `mvn clean package`
 
 ### Run project ###
-`java -jar target/Lift.jar`
+`java -jar target/lift.jar`
 
 ## Description (in russian) ##
 

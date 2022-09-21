@@ -52,7 +52,7 @@ public class App {
         if (elevatorService.passengersGetOn(building, elevator)) {
             consolePrinter.printBuildingWithElevator(building, elevator, "PASSENGERS GET ON");
         }
-        
+
         elevatorService.moveToNextFloor(building, elevator);
     }
 }
