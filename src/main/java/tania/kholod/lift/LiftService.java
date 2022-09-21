@@ -100,6 +100,12 @@ public class LiftService {
         }
         lift.setCurrentFloor(floor.getNumber());
 
+        View view = new View();
+        view.setFloor(floor.getNumber());
+        view.setPassengerComeIn(lift.getPassengers().size());
+        view.setPassengerInLiftFinish(lift.getPassengers().size());
+        view.print();
+
         if (lift.getCurrentFloor() > lift.getGoalFloor())
             moveLiftDown();
         else

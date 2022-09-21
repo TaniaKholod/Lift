@@ -7,9 +7,6 @@ public class App
         LiftService.toFillFloors();
         LiftService.start();
 
-        //System.out.println("number floors in house - " + LiftService.NUMBER_FLOORS);
-
-
     }
 
 

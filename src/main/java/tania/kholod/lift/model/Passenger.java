@@ -1,7 +1,6 @@
 package tania.kholod.lift.model;
 
 import tania.kholod.lift.LiftService;
-import tania.kholod.lift.model.Floor;
 
 import java.util.Random;
 
