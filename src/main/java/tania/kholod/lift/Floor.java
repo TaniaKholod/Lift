@@ -1,45 +1,62 @@
 package tania.kholod.lift;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Floor {
 
     private int number;
-    private Passenger[] passengers;
+    private List<Passenger> passengersUp;
+    private List<Passenger> passengersDown;
     private static final int MAX_NUMBER_PASSENGERS = 10;
 
     public int getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public List<Passenger> getPassengersUp() {
+        return passengersUp;
+    }
+
+    public List<Passenger> getPassengersDown() {
+        return passengersDown;
+    }
+
+    public Floor(int number) {
+
         this.number = number;
-    }
+        passengersUp = new ArrayList<>();
+        passengersDown = new ArrayList<>();
 
-    public Passenger[] getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(Passenger[] passengers) {
-        this.passengers = passengers;
-    }
-
-    public static Floor[] toFillFloors () {
         Random r = new Random();
-        Floor [] floors = new Floor[House.NUMBER_FLOORS];
-        for (int i = 1; i <= House.NUMBER_FLOORS; i++) {
-            Floor floor = new Floor();
-            floor.setNumber(i);
-            int numberPassengers = r.nextInt(MAX_NUMBER_PASSENGERS + 1);
-            Passenger[] passengers = new Passenger[numberPassengers];
-            floor.setPassengers(passengers);
-            if (numberPassengers == 0)
-                continue;
-            for (int j = 1; j <= numberPassengers; j++) {
-                passengers[j] = new Passenger(i);
-            }
+        int counter = r.nextInt(MAX_NUMBER_PASSENGERS + 1);
+        while (counter > 0) {
+            counter--;
+            Passenger passenger = new Passenger(number);
+            if (passenger.getGoalFloor() > passenger.getCurrentFloor())
+                passengersUp.add(passenger);
+            else
+                passengersDown.add(passenger);
         }
-        return floors;
+
     }
+
+    public boolean hasPassengers() {
+        if (passengersUp.size() + passengersDown.size() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public static int getRandomFloor(int currentFloor) {
+        Random random = new Random();
+        int goalFloor = currentFloor;
+        while (goalFloor == currentFloor) {
+            goalFloor = random.nextInt(House.NUMBER_FLOORS) + 1;
+        }
+        return goalFloor;
+    }
+
 
 }

@@ -6,7 +6,6 @@ public class Passenger {
 
     private int currentFloor;
     private int goalFloor;
-    private static Random random = new Random();
 
     public int getCurrentFloor() {
         return currentFloor;
@@ -17,10 +16,15 @@ public class Passenger {
     }
 
     public Passenger(int currentFloor) {
+        Random random = new Random();
         this.currentFloor = currentFloor;
-        goalFloor = currentFloor;
-        while (goalFloor == currentFloor) {
-            goalFloor = random.nextInt(House.NUMBER_FLOORS + 1);
-        }
+        goalFloor = Floor.getRandomFloor(currentFloor);
     }
+
+    public void changeGoalFloor() {
+        currentFloor = goalFloor;
+        goalFloor = Floor.getRandomFloor(currentFloor);
+    }
+
+
 }
