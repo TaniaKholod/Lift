@@ -53,6 +53,7 @@ public class App {
             consolePrinter.printBuildingWithElevator(building, elevator, "PASSENGERS GET ON");
         }
 
+        elevatorService.setNewDestination(building, elevator);
         elevatorService.moveToNextFloor(building, elevator);
     }
 }

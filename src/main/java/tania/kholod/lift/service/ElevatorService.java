@@ -22,8 +22,8 @@ public class ElevatorService {
         for (int i = 0; i < passengersInElevator.length; i++) {
             if (passengersInElevator[i] == null) {
                 for (int j = 0; j < passengersOnFloor.size(); ) {
-                    if (passengersOnFloor.get(j) > elevator.getCurrentFloor() && elevator.getDirection()
-                            || passengersOnFloor.get(j) < elevator.getCurrentFloor() && !elevator.getDirection()) {
+                    if (elevator.getDirection() && passengersOnFloor.get(j) > elevator.getCurrentFloor()
+                            || !elevator.getDirection() && passengersOnFloor.get(j) < elevator.getCurrentFloor()) {
                         passengersInElevator[i] = passengersOnFloor.remove(j);
                         result = true;
                         break;
@@ -42,12 +42,23 @@ public class ElevatorService {
         Integer[] passengersInElevator = elevator.getPassengers();
         for (int i = 0; i < passengersInElevator.length; i++) {
             if (passengersInElevator[i] != null && passengersInElevator[i] == elevator.getCurrentFloor()) {
-                passengersOnFloor.add(randomGeneratorService.randomDestinationFloor(elevator.getCurrentFloor(), building.getFloors().size() - 1));
+                passengersOnFloor.add(passengersInElevator[i]);
                 passengersInElevator[i] = null;
                 result = true;
             }
         }
         return result;
+    }
+
+    public void setNewDestination(Building building, Elevator elevator) {
+        int currentFloor = elevator.getCurrentFloor();
+        int lastFloor = building.getFloors().size();
+        List<Integer> passengersOnFloor = building.getFloors().get(currentFloor);
+        for (int i = 0; i < passengersOnFloor.size(); i++) {
+            if (passengersOnFloor.get(i) == currentFloor) {
+                passengersOnFloor.set(i, randomGeneratorService.randomDestinationFloor(currentFloor, lastFloor));
+            }
+        }
     }
 
     public void moveToNextFloor(Building building, Elevator elevator) {
